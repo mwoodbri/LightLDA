@@ -2,7 +2,7 @@
 
 git clone -b multiverso-initial https://github.com/hhaoyan/Multiverso.git
 
-cd multiverso
+cd Multiverso
 cd third_party
 sh install.sh
 cd ..
