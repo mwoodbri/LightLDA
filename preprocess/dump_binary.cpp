@@ -421,11 +421,11 @@ int main(int argc, char* argv[])
     int32_t *doc_buf = new int32_t[kMaxDocLength * 2 + 1];
 
     std::string block_name = output_dir + "/block." +
-            std::to_string(output_offset) + "." + std::to_string(output_offset);
+            std::to_string(block_id) + "." + std::to_string(output_offset);
     std::string vocab_name = output_dir + "/vocab." +
-            std::to_string(output_offset) + "." + std::to_string(output_offset);
+            std::to_string(block_id) + "." + std::to_string(output_offset);
     std::string txt_vocab_name = output_dir + "/vocab." +
-            std::to_string(output_offset) + "." + std::to_string(output_offset) + ".txt";
+            std::to_string(block_id) + "." + std::to_string(output_offset) + ".txt";
 
     // open file
     lightlda::utf8_stream libsvm_file;
