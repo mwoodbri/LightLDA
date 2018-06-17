@@ -386,7 +386,7 @@ void load_global_tf(std::unordered_map<int32_t, int32_t>& global_tf_map,
 
 int main(int argc, char* argv[])
 {
-    if (argc != 5)
+    if (argc != 6)
     {
         printf("Usage: dump_binary <libsvm_input> <word_dict_file_input> "
                "<binary_output_dir> "
