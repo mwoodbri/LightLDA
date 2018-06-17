@@ -1,6 +1,6 @@
-PROJECT := $(shell readlink $(dir $(lastword $(MAKEFILE_LIST))) -f)
+PROJECT := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
-CXX = g++
+CXX = mpic++
 CXXFLAGS = -O3 \
            -std=c++11 \
            -Wall \
