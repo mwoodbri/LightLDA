@@ -1,4 +1,4 @@
-[submodule "multiverso"]
-	path = multiverso
+[submodule "Multiverso"]
+	path = Multiverso
 	url = https://github.com/hhaoyan/Multiverso.git
 	branch = multiverso-initial
