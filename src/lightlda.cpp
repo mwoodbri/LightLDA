@@ -39,7 +39,7 @@ namespace multiverso { namespace lightlda
 
             Multiverso::Init(trainers, param_loader, config, &argc, &argv);
 
-            Log::ResetLogFile("LightLDA."
+            Log::ResetLogFile("LightLDA." + std::to_string(Multiverso::ProcessRank()) + '.'
                 + std::to_string(clock()) + ".log");
 
             data_stream = CreateDataStream();
@@ -142,7 +142,9 @@ namespace multiverso { namespace lightlda
             Row<int32_t> doc_topic_counter(0, Format::Sparse, kMaxDocLength); 
             for (int32_t block = 0; block < Config::num_blocks; ++block)
             {
-                std::ofstream fout("doc_topic." + std::to_string(block));
+                std::ofstream fout("doc_topic." +
+                                   std::to_string(Multiverso::ProcessRank()) + '.' +
+                                   std::to_string(block));
                 data_stream->BeforeDataAccess();
                 DataBlock& data_block = data_stream->CurrDataBlock();
                 for (int i = 0; i < data_block.Size(); ++i)

@@ -69,6 +69,7 @@ namespace multiverso { namespace lightlda
         {
             data_buffer_[i] = new DataBlock();
             data_buffer_[i]->Read(data_path_ + "/block."
+                + std::to_string(Multiverso::ProcessRank()) + '.'
                 + std::to_string(i));
         }
     }
@@ -144,6 +145,7 @@ namespace multiverso { namespace lightlda
     {
         int32_t block_id = 0;
         std::string block_file = data_path_ + "/block."
+            + std::to_string(Multiverso::ProcessRank()) + '.'
             + std::to_string(block_id);
         data_buffer_->Start(0);
         data_buffer_->IOBuffer().Read(block_file);
@@ -166,8 +168,9 @@ namespace multiverso { namespace lightlda
                 }
                 // Load New data;
                 int32_t next_block_id = (block_id + 1) % num_blocks_;
-                block_file = data_path_ + "/block." + 
-                    std::to_string(next_block_id);
+                block_file = data_path_ + "/block."
+                    + std::to_string(Multiverso::ProcessRank()) + '.'
+                    + std::to_string(next_block_id);
                 data_block.Read(block_file);
                 data_buffer_->End(0);
             }
