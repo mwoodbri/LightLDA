@@ -24,9 +24,9 @@ namespace multiverso { namespace lightlda
             char hostname[64];
             result = gethostname(hostname, 64);
             if(result)
-                Log::Info("Cannot get hostname for rank %d.", Multiverso::ProcessRank());
+                Log::Info("Cannot get hostname for rank %d.\n", Multiverso::ProcessRank());
             else
-                Log::Info("Rank %d running on host %s.", Multiverso::ProcessRank(), hostname);
+                Log::Info("Rank %d running on host %s.\n", Multiverso::ProcessRank(), hostname);
         }
 
         static void Run(int argc, char** argv)
