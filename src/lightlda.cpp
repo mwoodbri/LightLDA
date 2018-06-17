@@ -23,7 +23,7 @@ namespace multiverso { namespace lightlda
             
             AliasTable* alias_table = new AliasTable();
             Barrier* barrier = new Barrier(Config::num_local_workers);
-            meta.Init();
+            // meta.Init();
             std::vector<TrainerBase*> trainers;
             for (int32_t i = 0; i < Config::num_local_workers; ++i)
             {
@@ -38,6 +38,7 @@ namespace multiverso { namespace lightlda
             config.server_endpoint_file = Config::server_file;
 
             Multiverso::Init(trainers, param_loader, config, &argc, &argv);
+            meta.Init();
 
             Log::ResetLogFile("LightLDA." + std::to_string(Multiverso::ProcessRank()) + '.'
                 + std::to_string(clock()) + ".log");
