@@ -388,14 +388,17 @@ int main(int argc, char* argv[])
 {
     if (argc != 5)
     {
-        printf("Usage: dump_binary <libsvm_input> <word_dict_file_input> <binary_output_dir> <output_file_offset>\n");
+        printf("Usage: dump_binary <libsvm_input> <word_dict_file_input> "
+               "<binary_output_dir> "
+               "<block_id> <output_file_offset>\n");
         exit(1);
     }
 
     std::string libsvm_file_name(argv[1]);
     std::string word_dict_file_name(argv[2]);
     std::string output_dir(argv[3]);
-    int32_t output_offset = atoi(argv[4]);
+    int32_t block_id = atoi(argv[4]);
+    int32_t output_offset = atoi(argv[5]);
     const int32_t kMaxDocLength = 8192;
 
     // 1. count how many documents in the data set
@@ -417,9 +420,12 @@ int main(int argc, char* argv[])
     int64_t* offset_buf = new int64_t[doc_num + 1];
     int32_t *doc_buf = new int32_t[kMaxDocLength * 2 + 1];
 
-    std::string block_name = output_dir + "/block." + std::to_string(output_offset);
-    std::string vocab_name = output_dir + "/vocab." + std::to_string(output_offset);
-    std::string txt_vocab_name = output_dir + "/vocab." + std::to_string(output_offset) + ".txt";
+    std::string block_name = output_dir + "/block." +
+            std::to_string(output_offset) + "." + std::to_string(output_offset);
+    std::string vocab_name = output_dir + "/vocab." +
+            std::to_string(output_offset) + "." + std::to_string(output_offset);
+    std::string txt_vocab_name = output_dir + "/vocab." +
+            std::to_string(output_offset) + "." + std::to_string(output_offset) + ".txt";
 
     // open file
     lightlda::utf8_stream libsvm_file;

@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <multiverso/log.h>
+#include <multiverso/multiverso.h>
 
 namespace multiverso { namespace lightlda
 {
@@ -66,7 +67,9 @@ namespace multiverso { namespace lightlda
             LocalVocab& local_vocab = local_vocabs_[i];
 
             std::string file_name = Config::input_dir 
-                + "/vocab." + std::to_string(i);
+                + "/vocab." +
+                std::to_string(Multiverso::ProcessRank()) + '.' +
+                std::to_string(i);
             std::ifstream vocab_file(file_name, std::ios::in|std::ios::binary);
 
             if (!vocab_file.good())
