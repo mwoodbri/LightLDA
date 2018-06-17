@@ -11,12 +11,24 @@
 #include <multiverso/barrier.h>
 #include <multiverso/log.h>
 #include <multiverso/row.h>
+#include <limits.h>
+#include <unistd.h>
 
 namespace multiverso { namespace lightlda
 {     
     class LightLDA
     {
     public:
+        static void PrintHostname(){
+            int result;
+            char hostname[64];
+            result = gethostname(hostname, 64);
+            if(result)
+                Log::Info("Cannot get hostname for rank %d.", Multiverso::ProcessRank());
+            else
+                Log::Info("Rank %d running on host %s.", Multiverso::ProcessRank(), hostname);
+        }
+
         static void Run(int argc, char** argv)
         {
             Config::Init(argc, argv);
@@ -42,6 +54,7 @@ namespace multiverso { namespace lightlda
 
             Log::ResetLogFile("LightLDA." + std::to_string(Multiverso::ProcessRank()) + '.'
                 + std::to_string(clock()) + ".log");
+            PrintHostname();
 
             data_stream = CreateDataStream();
             InitMultiverso();
