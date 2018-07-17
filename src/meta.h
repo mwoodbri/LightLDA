@@ -85,7 +85,8 @@ namespace multiverso { namespace lightlda
         void ModelSchedule4Inference();
         /*! \brief Build index for alias table */
         void BuildAliasIndex();
-    private:
+
+    protected:
         /*! \brief meta information for all data block */
         std::vector<LocalVocab> local_vocabs_;
         /*! \breif tf information for all word in the dataset */
@@ -94,6 +95,8 @@ namespace multiverso { namespace lightlda
         std::vector<int32_t> local_tf_;
 
         std::vector<std::vector<AliasTableIndex*> > alias_index_;
+
+    private:
         // No copying allowed
         Meta(const Meta&);
         void operator=(const Meta&);
