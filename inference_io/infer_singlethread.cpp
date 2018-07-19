@@ -89,6 +89,10 @@ namespace multiverso {
                     words.emplace_back(word, count);
                 }
 
+                if (words.size() == 0) {
+                    return 1;
+                }
+
                 return 0;
             }
 
