@@ -101,12 +101,14 @@ namespace multiverso {
                 doc_topic_counter.Clear();
                 doc.GetDocTopicVector(doc_topic_counter);
                 Row<int32_t>::iterator iter = doc_topic_counter.Iterator();
-                std::cout << "Topics for " << processed << " ";
+                std::string output;
+                output = "Topics for " + std::to_string(processed) + ": ";
                 while (iter.HasNext()) {
-                    std::cout << " " << iter.Key() << ":" << iter.Value();
+                    output += std::to_string(iter.Key()) + ":" + std::to_string(iter.Value()) + " ";
                     iter.Next();
                 }
-                std::cout << std::endl;
+                output += "\n";
+                Log::Info(output.c_str());
             }
         };
     } // namespace lightlda
