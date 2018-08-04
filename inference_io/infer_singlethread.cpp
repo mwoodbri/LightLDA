@@ -37,7 +37,7 @@ namespace multiverso {
 
                 xorshift_rng rng;
                 SingleThreadInferer inferer(model);
-                int32_t processed = 0;
+                uint32_t processed = 0;
                 while (true) {
                     std::vector<std::pair<int32_t, int32_t>> words;
                     if (ReadDocumentFromStdin(words))
@@ -96,7 +96,7 @@ namespace multiverso {
                 return 0;
             }
 
-            static void DumpDocTopic(Document& doc, int32_t processed) {
+            static void DumpDocTopic(Document& doc, uint32_t processed) {
                 Row<int32_t> doc_topic_counter(0, Format::Sparse, kMaxDocLength);
                 doc_topic_counter.Clear();
                 doc.GetDocTopicVector(doc_topic_counter);
