@@ -6,6 +6,7 @@
 #ifndef LIGHTLDA_UTIL_H_
 #define LIGHTLDA_UTIL_H_
 
+#include <common.h>
 #include <ctime>
 
 namespace multiverso { namespace lightlda
@@ -16,7 +17,11 @@ namespace multiverso { namespace lightlda
     public:
         xorshift_rng()
         {
-            jxr_ = static_cast<unsigned int>(time(nullptr));
+            if(Config::rand > 0){
+                jxr_ = static_cast<unsigned int>(Config::rand);
+            }else{
+                jxr_ = static_cast<unsigned int>(time(nullptr));
+            }
         }
         ~xorshift_rng() {}
 

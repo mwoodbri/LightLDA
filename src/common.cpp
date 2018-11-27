@@ -7,6 +7,7 @@ namespace multiverso { namespace lightlda
     const int64_t kMB = 1024 * 1024;
 
     // -- Begin: Config definitioin and defalut values --------------------- //
+    int32_t Config::rand = -1;
     int32_t Config::num_vocabs = -1;
     int32_t Config::num_topics = 100;
     int32_t Config::num_iterations = 100;
@@ -41,6 +42,7 @@ namespace multiverso { namespace lightlda
             {
                 PrintUsage();
             }
+            if (strcmp(argv[i], "-rand") == 0) rand = atoi(argv[i + 1]);
             if (strcmp(argv[i], "-num_vocabs") == 0) num_vocabs = atoi(argv[i + 1]);
             if (strcmp(argv[i], "-num_topics") == 0) num_topics = atoi(argv[i + 1]);
             if (strcmp(argv[i], "-num_iterations") == 0) num_iterations = atoi(argv[i + 1]);
