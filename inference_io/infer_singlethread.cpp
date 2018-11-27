@@ -35,14 +35,13 @@ namespace multiverso {
                 auto *model = new LocalModel(&meta);
                 model->Init();
 
-                xorshift_rng rng;
-                SingleThreadInferer inferer(model);
                 uint32_t processed = 0;
                 while (true) {
                     std::vector<std::pair<int32_t, int32_t>> words;
                     if (ReadDocumentFromStdin(words))
                         break;
 
+                    xorshift_rng rng;
                     std::vector<int32_t> doc_memory;
                     doc_memory.push_back(0);
                     for (auto i:words) {
@@ -53,6 +52,7 @@ namespace multiverso {
                     }
                     Document doc(&doc_memory[0], &doc_memory[doc_memory.size() - 1]);
 
+                    SingleThreadInferer inferer(model);
                     inferer.SetDocument(&doc);
                     Inference(inferer);
                     DumpDocTopic(doc, processed++);
