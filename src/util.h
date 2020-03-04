@@ -6,7 +6,7 @@
 #ifndef LIGHTLDA_UTIL_H_
 #define LIGHTLDA_UTIL_H_
 
-#include <common.h>
+#include "common.h"
 #include <ctime>
 
 namespace multiverso { namespace lightlda

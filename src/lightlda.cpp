@@ -12,7 +12,11 @@
 #include <multiverso/log.h>
 #include <multiverso/row.h>
 #include <limits.h>
+#ifdef WIN32
+#include <winsock.h>
+#else
 #include <unistd.h>
+#endif
 
 namespace multiverso { namespace lightlda
 {     
